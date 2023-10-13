@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.HttpClientErrorException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -49,5 +52,22 @@ public class AdminImpl implements AdminService {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(" ACCOUNT DOES NOT EXIST ");
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(" SOMETHING BAD HAPPEN ");
+    }
+
+    @Override
+    public ResponseEntity <String> updateAdminData(@PathVariable String id, @RequestBody Admin admin){
+        try{
+            Admin existingAdminData = adminRepo.findById(id).orElseThrow( () -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+            existingAdminData.setFirstName(admin.getFirstName());
+            existingAdminData.setLastName(admin.getLastName());
+            existingAdminData.setEmail(admin.getEmail());
+            existingAdminData.setUserName(admin.getUserName());
+            existingAdminData.setPassword(admin.getPassword());
+            existingAdminData.setSpecialCharacters(admin.getSpecialCharacters());
+            adminRepo.save(existingAdminData);
+            return ResponseEntity.status(HttpStatus.OK).body(" ADMIN DATA UPDATED ");
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(" ADMIN DATA IS NOT AVAILABLE ");
+        }
     }
 }

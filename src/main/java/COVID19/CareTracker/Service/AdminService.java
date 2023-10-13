@@ -15,4 +15,7 @@ public interface AdminService {
     // log in admin
     ResponseEntity <String> logInAsAdmin(String email, String userName, String password, String specialCharacters);
 
+    // update admin data
+    ResponseEntity <String> updateAdminData(String id, Admin admin);
+
 }
