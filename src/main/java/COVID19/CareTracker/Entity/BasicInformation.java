@@ -32,6 +32,9 @@ public class BasicInformation {
     private @Getter @Setter String middleName;
 
     @Column(nullable = false)
+    private @Getter @Setter String gender;
+
+    @Column(nullable = false)
     private @Getter @Setter LocalDate dateOfBirth;
 
     @Column(nullable = false)

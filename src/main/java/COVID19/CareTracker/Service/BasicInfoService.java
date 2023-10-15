@@ -24,4 +24,11 @@ public interface BasicInfoService {
     // delete patient data
     ResponseEntity <String> deletePatientData(String id);
 
+    // get all male patients
+    List <BasicInformation> getAllMalePatients();
+
+
+    //get all female patients
+    List <BasicInformation> getAllFemalePatients();
+
 }

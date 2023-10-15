@@ -66,4 +66,14 @@ public class AdminController {
         return basicInfoService.deletePatientData(id);
     }
 
+    @GetMapping("/patient-males")
+    public List <BasicInformation> getAllMalePatients(){
+        return basicInfoService.getAllMalePatients();
+    }
+
+    @GetMapping("/patient-females")
+    public List <BasicInformation> getAllFemalePatients(){
+        return basicInfoService.getAllFemalePatients();
+    }
+
 }

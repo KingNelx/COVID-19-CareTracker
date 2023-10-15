@@ -95,6 +95,7 @@ public class BasicInfoImpl implements BasicInfoService {
                 basicInformationData.setFirstName(basicInformation.getFirstName());
                 basicInformationData.setLastName(basicInformation.getLastName());
                 basicInformationData.setMiddleName(basicInformation.getMiddleName());
+                basicInformationData.setGender(basicInformation.getGender());
                 basicInformationData.setDateOfBirth(basicInformation.getDateOfBirth());
                 basicInformationData.setAddress(basicInformation.getAddress());
                 basicInformationData.setPhoneNumber(basicInformation.getPhoneNumber());
@@ -153,5 +154,29 @@ public class BasicInfoImpl implements BasicInfoService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(" PATIENT DATA MISSING " + e.getMessage());
         }
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(" SOMETHING WENT WRONG ");
+    }
+
+    @Override
+    public List <BasicInformation> getAllMalePatients(){
+        try{
+            if(!basicInfoRepo.findByGender("MALE").isEmpty()){
+                return basicInfoRepo.findByGender("MALE");
+            }
+        }catch(Exception e){
+            throw new HttpClientErrorException(HttpStatus.NO_CONTENT, e.getMessage());
+        }
+        throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, " SOMETHING WENT WRONG ");
+    }
+
+    @Override
+    public List <BasicInformation> getAllFemalePatients(){
+        try{
+            if(!basicInfoRepo.findByGender("FEMALE").isEmpty()){
+                return basicInfoRepo.findByGender("FEMALE");
+            }
+        }catch(Exception e){
+            throw new HttpClientErrorException(HttpStatus.NO_CONTENT, e.getMessage());
+        }
+        throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, " SOMETHING WENT WRONG ");
     }
 }
