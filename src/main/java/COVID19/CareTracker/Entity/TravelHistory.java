@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Column;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
+
 @Document(collection = "TravelHistory")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,10 +25,10 @@ public class TravelHistory {
     private @Getter @Setter String travelDestination;
 
     @Column(nullable = false)
-    private @Getter @Setter String departureDate;
+    private @Getter @Setter LocalDate departureDate;
 
     @Column(nullable = false)
-    private @Getter @Setter String arrivalDate;
+    private @Getter @Setter LocalDate arrivalDate;
 
     @Column(nullable = false)
     private @Getter @Setter String modeOfTravel;
