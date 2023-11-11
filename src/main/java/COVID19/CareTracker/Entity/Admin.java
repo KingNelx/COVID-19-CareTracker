@@ -20,20 +20,20 @@ public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "admin_id")
-    private @Getter @Setter int admin_id;
+    private @Getter @Setter Long adminID;
 
     @Column(name = "admin_user", nullable = false)
-    private @Getter @Setter String admin_user;
+    private @Getter @Setter String adminUser;
 
     @Column(name = "admin_email", nullable = false)
-    private @Getter @Setter String admin_email;
+    private @Getter @Setter String adminEmail;
 
     @Column(name = "admin_password", nullable = false)
-    private @Getter @Setter String admin_password;
+    private @Getter @Setter String adminPassword;
 
     @Column(name = "admin_contact", nullable = false)
-    private @Getter @Setter String admin_contact;
+    private @Getter @Setter String adminContact;
 
     @Column(name = "admin_special_char", nullable = false)
-    private @Getter @Setter String admin_special_char;
+    private @Getter @Setter String adminSpecialCharacter;
 }
