@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,7 +25,6 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "patient_id")
     private @Getter @Setter Long patient_id;
-
 
     @Column(name = "patient_firstname",nullable = false)
     private @Getter @Setter String firstName;
@@ -47,4 +47,7 @@ public class Patient {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
+
+    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
+    private TravelHistory travelHistory;
 }
