@@ -8,12 +8,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -50,4 +52,8 @@ public class Patient {
 
     @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
     private TravelHistory travelHistory;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    private List <Medical> medicals;
+
 }
