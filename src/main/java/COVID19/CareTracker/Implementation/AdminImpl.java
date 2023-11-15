@@ -62,6 +62,3 @@ public class AdminImpl implements AdminService {
 
 }
 
-/*
-
- */

@@ -13,5 +13,5 @@ public interface DoctorService {
     List <Doctor> queryDoctors();
     Optional <Doctor> queryDoctorByID(String id);
     ResponseEntity <String> updateDoctorsData(String id, Doctor doctor);
-    ResponseEntity <String> removeDoctorsData(String id;
+    ResponseEntity <String> removeDoctorsData(String id);
 }

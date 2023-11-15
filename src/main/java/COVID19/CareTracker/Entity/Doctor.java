@@ -56,6 +56,6 @@ public class Doctor {
     @Column(name = "years_of_experience", nullable = false)
     private @Getter @Setter String yrsOfExperience;
 
-    @OneToMany(mappedBy = "doc_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "doc_id")
     private List <Patient> patients;
 }
