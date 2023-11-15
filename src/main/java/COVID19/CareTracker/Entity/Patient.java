@@ -52,6 +52,6 @@ public class Patient {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doc_id")
-    private Doctor doctor;
+    private @Getter @Setter Doctor doctor;
 }
 

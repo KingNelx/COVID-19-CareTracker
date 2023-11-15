@@ -64,16 +64,16 @@ public class DoctorImpl implements DoctorService {
 
         try{
             if(existingData != null){
-                existingData.setFirstName(existingData.getFirstName());
-                existingData.setLastName(existingData.getLastName());
-                existingData.setGender(existingData.getGender());
-                existingData.setAge(existingData.getAge());
-                existingData.setEmailAddress(existingData.getEmailAddress());
-                existingData.setPhoneNumber(existingData.getPhoneNumber());
-                existingData.setAddress(existingData.getAddress());
-                existingData.setSpeciality(existingData.getSpeciality());
-                existingData.setLicenseNumber(existingData.getLicenseNumber());
-                existingData.setYrsOfExperience(existingData.getYrsOfExperience());
+                existingData.setFirstName(doctor.getFirstName());
+                existingData.setLastName(doctor.getLastName());
+                existingData.setGender(doctor.getGender());
+                existingData.setAge(doctor.getAge());
+                existingData.setEmailAddress(doctor.getEmailAddress());
+                existingData.setPhoneNumber(doctor.getPhoneNumber());
+                existingData.setAddress(doctor.getAddress());
+                existingData.setSpeciality(doctor.getSpeciality());
+                existingData.setLicenseNumber(doctor.getLicenseNumber());
+                existingData.setYrsOfExperience(doctor.getYrsOfExperience());
                 docRepo.save(existingData);
                 return ResponseEntity.status(HttpStatus.OK).body(" DATA UPDATED SUCCESSFULLY ");
             }
