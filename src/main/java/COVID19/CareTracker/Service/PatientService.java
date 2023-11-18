@@ -10,8 +10,8 @@ public interface PatientService {
 
     ResponseEntity <String> addNewPatient(Patient patient);
     List <Patient> queryPatients();
-    Optional <Patient> queryPatientByID(String id);
-    ResponseEntity <String> updatePatientData(String id, Patient patient);
-    ResponseEntity <String> removePatientData(String id);
+//    Optional <Patient> queryPatientByID(String id);
+//    ResponseEntity <String> updatePatientData(String id, Patient patient);
+//    ResponseEntity <String> removePatientData(String id);
 
 }

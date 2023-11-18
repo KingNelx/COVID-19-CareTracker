@@ -24,7 +24,7 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     @Column(name = "doc_id")
-    private @Getter @Setter Long docID;
+    private @Getter @Setter Long id;
 
     @Column(name = "first_name", nullable = false)
     private @Getter @Setter String firstName;
@@ -56,6 +56,6 @@ public class Doctor {
     @Column(name = "years_of_experience", nullable = false)
     private @Getter @Setter String yrsOfExperience;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private @Getter @Setter List <Patient> patients;
 }

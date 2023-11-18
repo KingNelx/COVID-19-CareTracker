@@ -1,7 +1,9 @@
 package COVID19.CareTracker.Controller;
 
 import COVID19.CareTracker.Entity.Admin;
+import COVID19.CareTracker.Entity.Patient;
 import COVID19.CareTracker.Service.AdminService;
+import COVID19.CareTracker.Service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,8 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private PatientService patientService;
 
     @PostMapping("/create-account")
     public ResponseEntity <String> createAccount(@RequestBody Admin admin){
@@ -32,5 +36,16 @@ public class AdminController {
     @GetMapping("/queryAll")
     public List <Admin> queryAdmins(){
         return adminService.queryAdmins();
+    }
+
+    // PATIENTS
+    @PostMapping("/patient/register-patient")
+    public ResponseEntity <String> addNewPatient(@RequestBody Patient patient){
+        return patientService.addNewPatient(patient);
+    }
+
+    @GetMapping("/patient/query-patients")
+    public List <Patient> queryPatients(){
+        return patientService.queryPatients();
     }
 }

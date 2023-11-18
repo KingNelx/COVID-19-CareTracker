@@ -1,5 +1,6 @@
 package COVID19.CareTracker.Entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,7 +15,6 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
-import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -39,7 +39,7 @@ public class Patient {
     private @Getter @Setter String address;
 
     @Column(name = "date_of_birth", nullable = false)
-    private @Getter @Setter LocalDate dateOfBirth;
+    private @Getter @Setter String dateOfBirth;
 
     @Column(name = "gender", nullable = false)
     private @Getter @Setter String gender;
@@ -50,7 +50,7 @@ public class Patient {
     @Column(name = "email_address", nullable = false)
     private @Getter @Setter String emailAddress;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "doc_id")
     private @Getter @Setter Doctor doctor;
 }
