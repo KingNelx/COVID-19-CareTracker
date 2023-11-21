@@ -3,6 +3,7 @@ package COVID19.CareTracker.Entity;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -57,7 +58,6 @@ public class Doctor {
     @Column(name = "years_of_experience", nullable = false)
     private @Getter @Setter String yrsOfExperience;
 
-    @OneToMany(mappedBy = "doctor")
-    @JoinColumn
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "doctor", cascade = CascadeType.ALL)
     private @Getter @Setter List <Patient> patients;
 }

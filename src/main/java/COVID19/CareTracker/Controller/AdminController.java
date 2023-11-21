@@ -18,7 +18,7 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
-   
+
 
     @PostMapping("/create-account")
     public ResponseEntity <String> createAccount(@RequestBody Admin admin){
