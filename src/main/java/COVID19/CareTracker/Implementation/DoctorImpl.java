@@ -17,7 +17,6 @@ import java.util.List;
 public class DoctorImpl implements DoctorService {
     @Autowired
     private DocRepo docRepo;
-
     @Override
     public ResponseEntity <String> createDoctor(@RequestBody Doctor doctor) {
         Optional <Doctor> existingFirstName = docRepo.findByFirstName(doctor.getFirstName());
