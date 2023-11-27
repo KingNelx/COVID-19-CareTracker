@@ -1,6 +1,7 @@
 package COVID19.CareTracker.Implementation;
 
 import COVID19.CareTracker.Entity.Doctor;
+import COVID19.CareTracker.Entity.Patient;
 import COVID19.CareTracker.Repository.DocRepo;
 import COVID19.CareTracker.Service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.List;
 @Service
@@ -35,14 +37,15 @@ public class DoctorImpl implements DoctorService {
 
     @Override
     public List <Doctor> queryDoctors(){
-        try{
-            if(!docRepo.findAll().isEmpty()){
-                return docRepo.findAll();
-            }
-        }catch (Exception e){
-            throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, " SOMETHING WENT WRONG " + e.getMessage());
-        }
-        throw new HttpClientErrorException(HttpStatus.NO_CONTENT);
+       try{
+           List <Doctor> allDoctors = docRepo.findAll();
+           if(allDoctors.isEmpty()){
+               throw new HttpClientErrorException(HttpStatus.NO_CONTENT);
+           }
+           return  allDoctors;
+       }catch (Exception e){
+           throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Something went wrong: " + e.getMessage());
+       }
     }
 
     @Override
