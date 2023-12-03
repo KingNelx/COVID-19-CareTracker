@@ -37,15 +37,15 @@ public class DoctorImpl implements DoctorService {
 
     @Override
     public List <Doctor> queryDoctors(){
-       try{
-           List <Doctor> allDoctors = docRepo.findAll();
-           if(allDoctors.isEmpty()){
-               throw new HttpClientErrorException(HttpStatus.NO_CONTENT);
-           }
-           return  allDoctors;
-       }catch (Exception e){
-           throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Something went wrong: " + e.getMessage());
-       }
+      List <Doctor> findAllDoctors = docRepo.findAll();
+      try{
+          if(!findAllDoctors.isEmpty()) {
+              return docRepo.findAll();
+          }
+      }catch (Exception e){
+          throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, " SOMETHING WENT WRONG " + e.getCause());
+      }
+        throw new HttpClientErrorException(HttpStatus.NO_CONTENT);
     }
 
     @Override

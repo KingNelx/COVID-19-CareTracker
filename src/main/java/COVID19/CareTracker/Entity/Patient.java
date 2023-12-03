@@ -2,8 +2,10 @@ package COVID19.CareTracker.Entity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.AllArgsConstructor;
@@ -52,5 +54,8 @@ public class Patient {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doc_id")
     private @Getter @Setter Doctor doctor;
+
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "patient")
+    private @Getter @Setter TravelHistory travelHistory;
 
 }
