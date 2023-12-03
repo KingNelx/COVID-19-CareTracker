@@ -2,9 +2,9 @@ package COVID19.CareTracker.Entity;
 
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +21,7 @@ import jakarta.persistence.OneToMany;
 @NoArgsConstructor
 @Entity
 @Table(name = "doctor")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Doctor {
 
     @Id
@@ -58,6 +59,6 @@ public class Doctor {
     @Column(name = "years_of_experience", nullable = false)
     private @Getter @Setter String yrsOfExperience;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "doctor", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "doctor")
     private @Getter @Setter List <Patient> patients;
 }

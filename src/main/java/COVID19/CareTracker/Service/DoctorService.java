@@ -11,9 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 public interface DoctorService {
 
     ResponseEntity <String> createDoctor(Doctor doctor);
-    @Transactional
     List <Doctor> queryDoctors();
-    @Transactional
+
     Optional <Doctor> queryDoctorByID(String id);
     ResponseEntity <String> updateDoctorsData(String id, Doctor doctor);
     ResponseEntity <String> removeDoctorsData(String id);

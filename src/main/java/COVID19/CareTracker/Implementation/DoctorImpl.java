@@ -36,17 +36,20 @@ public class DoctorImpl implements DoctorService {
     }
 
     @Override
-    public List <Doctor> queryDoctors(){
-      List <Doctor> findAllDoctors = docRepo.findAll();
-      try{
-          if(!findAllDoctors.isEmpty()) {
-              return docRepo.findAll();
-          }
-      }catch (Exception e){
-          throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, " SOMETHING WENT WRONG " + e.getCause());
-      }
-        throw new HttpClientErrorException(HttpStatus.NO_CONTENT);
+    public List<Doctor> queryDoctors() {
+        try {
+            List<Doctor> allDoctors = docRepo.findAll();
+
+            if (!allDoctors.isEmpty()) {
+                return allDoctors;
+            } else {
+                throw new HttpClientErrorException(HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "SOMETHING WENT WRONG: " + e.getCause());
+        }
     }
+
 
     @Override
     public Optional <Doctor> queryDoctorByID(@PathVariable String id){

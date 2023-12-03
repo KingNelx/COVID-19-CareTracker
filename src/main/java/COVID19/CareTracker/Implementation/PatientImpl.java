@@ -60,14 +60,15 @@ public class PatientImpl implements PatientService {
 
     @Override
     public List <Patient> queryPatients(){
+        List <Patient> allPatients = patientRepo.findAll();
+
         try{
-            if(!patientRepo.findAll().isEmpty()){
-                return patientRepo.findAll();
-            }else{
-                throw new HttpClientErrorException(HttpStatus.NO_CONTENT);
+            if(!allPatients.isEmpty()){
+                return allPatients;
             }
         }catch (Exception e){
             throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage() + " SOMETHING WENT WRONG ");
         }
+        throw new HttpClientErrorException(HttpStatus.NO_CONTENT);
     }
 }

@@ -1,5 +1,7 @@
 package COVID19.CareTracker.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.FetchType;
@@ -20,6 +22,7 @@ import jakarta.persistence.Table;
 @NoArgsConstructor
 @Entity
 @Table(name = "Patient")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Patient {
 
     @Id
@@ -55,7 +58,7 @@ public class Patient {
     @JoinColumn(name = "doc_id")
     private @Getter @Setter Doctor doctor;
 
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL, mappedBy = "patient")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "patient")
     private @Getter @Setter TravelHistory travelHistory;
 
 }
