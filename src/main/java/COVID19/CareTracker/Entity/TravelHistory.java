@@ -41,7 +41,7 @@ public class TravelHistory {
     @Column(name = "mode_of_travel", nullable = false)
     private @Getter @Setter String modeOfTravel;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name = "id")
     private @Getter @Setter Patient patient;
 }

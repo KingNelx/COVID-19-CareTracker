@@ -10,7 +10,9 @@ import COVID19.CareTracker.Service.PatientService;
 import COVID19.CareTracker.Service.TravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,5 +62,10 @@ public class AdminController {
     @PostMapping("/patient/input/travel-history")
     public ResponseEntity <String> addTravelHistory(@RequestBody TravelHistory travelHistory){
         return travelService.addTravelHistory(travelHistory);
+    }
+
+    @DeleteMapping("/patient/remove/patient-id/{id}")
+    public ResponseEntity <String> removePatientData(@PathVariable Long id){
+        return patientService.deletePatientByID(id);
     }
 }

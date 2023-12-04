@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -70,5 +71,19 @@ public class PatientImpl implements PatientService {
             throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage() + " SOMETHING WENT WRONG ");
         }
         throw new HttpClientErrorException(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    public ResponseEntity <String> deletePatientByID(@PathVariable Long id){
+       Optional <Patient> existingID = patientRepo.findById(id);
+       try{
+           if(existingID.isPresent()){
+               patientRepo.deleteById(id);
+               return ResponseEntity.status(HttpStatus.OK).body(" PATIENT DELETED ");
+           }
+       }catch (Exception e){
+           return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(" SOMETHING WENT WRONG " + e.getCause());
+       }
+       return ResponseEntity.status(HttpStatus.NOT_FOUND).body(" PATIENT DATA DOES NOT EXIST ");
     }
 }

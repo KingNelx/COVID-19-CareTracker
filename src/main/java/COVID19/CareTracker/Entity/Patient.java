@@ -54,11 +54,11 @@ public class Patient {
     @Column(name = "email_address", nullable = false)
     private @Getter @Setter String emailAddress;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "doc_id")
     private @Getter @Setter Doctor doctor;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "patient")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "patient", cascade = CascadeType.ALL)
     private @Getter @Setter TravelHistory travelHistory;
 
 }

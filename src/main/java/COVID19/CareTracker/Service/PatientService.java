@@ -10,5 +10,6 @@ public interface PatientService {
 
     ResponseEntity <String> addPatient(Patient patient);
     List <Patient> queryPatients();
+    ResponseEntity <String> deletePatientByID(Long id);
 
 }
