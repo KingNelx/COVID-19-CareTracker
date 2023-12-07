@@ -58,7 +58,7 @@ public class Patient {
     @JoinColumn(name = "doc_id")
     private @Getter @Setter Doctor doctor;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "patient", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "patientID", cascade = CascadeType.ALL)
     private @Getter @Setter TravelHistory travelHistory;
 
 }

@@ -11,5 +11,8 @@ public interface PatientService {
     ResponseEntity <String> addPatient(Patient patient);
     List <Patient> queryPatients();
     ResponseEntity <String> deletePatientByID(Long id);
+    Optional <Patient> queryPatientByID(Long id);
+
+    ResponseEntity <String> updatePatientData(Long id, Patient patient);
 
 }

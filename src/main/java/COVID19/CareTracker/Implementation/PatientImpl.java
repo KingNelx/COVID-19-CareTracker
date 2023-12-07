@@ -86,4 +86,42 @@ public class PatientImpl implements PatientService {
        }
        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(" PATIENT DATA DOES NOT EXIST ");
     }
+
+
+    @Override
+    public ResponseEntity <String> updatePatientData(@PathVariable Long id, @RequestBody Patient patient){
+        Patient existingPatient = patientRepo.findById(id).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND));
+
+        try{
+            if(existingPatient != null){
+                existingPatient.setFirstName(patient.getFirstName());
+                existingPatient.setLastName(patient.getLastName());
+                existingPatient.setAddress(patient.getAddress());
+                existingPatient.setDateOfBirth(patient.getDateOfBirth());
+                existingPatient.setGender(patient.getGender());
+                existingPatient.setPhoneNumber(patient.getPhoneNumber());
+                existingPatient.setEmailAddress(patient.getEmailAddress());
+                patientRepo.save(existingPatient);
+                return ResponseEntity.status(HttpStatus.OK).body(" UPDATED SUCCESSFULLY ");
+            }
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(" SOMETHING WENT WRONG " + e.getCause());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(" PATIENT DOES NOT EXIST ");
+    }
+
+    @Override
+    public Optional <Patient> queryPatientByID(@PathVariable Long id){
+        Optional <Patient> existingID = patientRepo.findById(id);
+
+        try{
+            if(existingID.isPresent()){
+                return existingID;
+            }
+        }catch (Exception e){
+            throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, " SOMETHING WENT WRONG " + e.getCause());
+        }
+        throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
+    }
+
 }

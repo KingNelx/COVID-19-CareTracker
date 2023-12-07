@@ -60,5 +60,5 @@ public class Doctor {
     private @Getter @Setter String yrsOfExperience;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "doctor")
-    private @Getter @Setter List <Patient> patients;
+    private @Getter @Setter List <Patient> patientID;
 }

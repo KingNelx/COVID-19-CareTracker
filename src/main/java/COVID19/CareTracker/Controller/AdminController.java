@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/admin")
@@ -59,9 +60,21 @@ public class AdminController {
     public List <Patient> queryPatients(){
         return patientService.queryPatients();
     }
-    @PostMapping("/patient/input/travel-history")
-    public ResponseEntity <String> addTravelHistory(@RequestBody TravelHistory travelHistory){
-        return travelService.addTravelHistory(travelHistory);
+
+
+   @GetMapping("/patient/travel/query-travels")
+   public List <TravelHistory> queryAll(){
+        return travelService.queryHistory();
+   }
+
+    @GetMapping("/patient/query-by-id/{id}")
+    public Optional <Patient> queryPatientByID(@PathVariable Long id){
+        return patientService.queryPatientByID(id);
+    }
+
+    @PutMapping("/patient/update-patient/{id}")
+    public ResponseEntity <String> updatePatientData(@PathVariable Long id, @RequestBody Patient patient){
+        return patientService.updatePatientData(id, patient);
     }
 
     @DeleteMapping("/patient/remove/patient-id/{id}")
