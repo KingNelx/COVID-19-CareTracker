@@ -1,8 +1,7 @@
 package COVID19.CareTracker.Entity;
 
-import jakarta.persistence.CascadeType;
+
 import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;

@@ -81,4 +81,14 @@ public class AdminController {
     public ResponseEntity <String> removePatientData(@PathVariable Long id){
         return patientService.deletePatientByID(id);
     }
+
+    @GetMapping("/patient/gender/males")
+    public Optional <Patient> queryAllMalePatients(){
+        return patientService.allMalePatients();
+    }
+
+    @GetMapping("/patient/gender/females")
+    public Optional <Patient> queryAllFemalePatients(){
+        return patientService.allFemalePatients();
+    }
 }

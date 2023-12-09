@@ -14,5 +14,7 @@ public interface PatientService {
     Optional <Patient> queryPatientByID(Long id);
 
     ResponseEntity <String> updatePatientData(Long id, Patient patient);
+    Optional <Patient> allMalePatients();
+    Optional <Patient> allFemalePatients();
 
 }

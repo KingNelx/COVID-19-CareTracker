@@ -124,4 +124,31 @@ public class PatientImpl implements PatientService {
         throw new HttpClientErrorException(HttpStatus.NOT_FOUND);
     }
 
+    @Override
+    public Optional <Patient> allMalePatients(){
+        Optional <Patient> allMale = patientRepo.findByGender("Male");
+
+        try{
+            if(allMale.isPresent()){
+                return allMale;
+            }
+        }catch (Exception e){
+            throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, " SOMETHING WENT WRONG " + e.getMessage());
+        }
+        throw new HttpClientErrorException(HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    public Optional <Patient> allFemalePatients(){
+        Optional <Patient> allFemale = patientRepo.findByGender("Female");
+        try{
+            if(allFemale.isPresent()){
+                return allFemale;
+            }
+        }catch (Exception e){
+            throw new HttpClientErrorException(HttpStatus.INTERNAL_SERVER_ERROR, " SOMETHING WENT WRONG " + e.getMessage());
+        }
+        throw new HttpClientErrorException(HttpStatus.NO_CONTENT);
+    }
+
 }

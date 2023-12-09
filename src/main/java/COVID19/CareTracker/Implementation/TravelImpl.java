@@ -54,7 +54,6 @@ public class TravelImpl implements TravelService {
     @Override
     public List <TravelHistory> queryHistory(){
         List <TravelHistory> allHistory = travelRepo.findAll();
-
         try{
             if(!allHistory.isEmpty()){
                 return allHistory;
