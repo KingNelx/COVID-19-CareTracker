@@ -99,6 +99,7 @@ public class PatientImpl implements PatientService {
                 existingPatient.setAddress(patient.getAddress());
                 existingPatient.setDateOfBirth(patient.getDateOfBirth());
                 existingPatient.setGender(patient.getGender());
+                existingPatient.setPatientType(patient.getPatientType());
                 existingPatient.setPhoneNumber(patient.getPhoneNumber());
                 existingPatient.setEmailAddress(patient.getEmailAddress());
                 patientRepo.save(existingPatient);

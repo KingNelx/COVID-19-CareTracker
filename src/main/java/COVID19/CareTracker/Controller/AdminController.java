@@ -67,6 +67,11 @@ public class AdminController {
         return travelService.queryHistory();
    }
 
+   @PostMapping("/patient/travel/input/history")
+   public ResponseEntity <String> travelHistory(@RequestBody TravelHistory travelHistory){
+        return travelService.addTravelHistory(travelHistory);
+    }
+
     @GetMapping("/patient/query-by-id/{id}")
     public Optional <Patient> queryPatientByID(@PathVariable Long id){
         return patientService.queryPatientByID(id);

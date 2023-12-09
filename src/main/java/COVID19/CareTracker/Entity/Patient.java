@@ -48,6 +48,9 @@ public class Patient {
     @Column(name = "gender", nullable = false)
     private @Getter @Setter String gender;
 
+    @Column(name = "patient_type", nullable = false)
+    private @Getter @Setter String patientType;
+
     @Column(name = "phone_number", nullable = false)
     private @Getter @Setter String phoneNumber;
 
